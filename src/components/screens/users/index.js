@@ -14,9 +14,7 @@ import colors from '../../styles/colors';
 
 const Users = (props) => {
       const records = useSelector((state) => state.records);
-      console.log('recs', records);
       const { users } = records;
-      
       const dispatch = useDispatch();
 
       useEffect(()=>{
