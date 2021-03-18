@@ -8,7 +8,7 @@ const initialState = {
   
 };
 
-const UserReducer = (state = initialState, action) => {
+const recordReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USER:
       return {
@@ -27,4 +27,4 @@ const UserReducer = (state = initialState, action) => {
 };
 
 
-export default UserReducer;
+export default recordReducer;

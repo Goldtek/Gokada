@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Text,
   View,
@@ -8,21 +8,26 @@ import {
 } from 'react-native';
 import {Appbar} from 'react-native-paper';
 import axios from 'axios';
-
+import {useSelector, useDispatch} from 'react-redux';
 import styles from './styles';
 import colors from '../../styles/colors';
 
 const Users = (props) => {
-
-      const [users, setUsers] = useState([]);
+      const records = useSelector((state) => state.records);
+      console.log('recs', records);
+      const { users } = records;
+      
+      const dispatch = useDispatch();
 
       useEffect(()=>{
-        fetchUsers();
-      },[]);
+        if ( users.length <= 0) {
+          fetchUsers();
+        } 
+      },[users]);
     
       const fetchUsers = async () => {
        const { data } = await axios.get("https://reqres.in/api/users?page=2");
-       setUsers(data.data);
+       dispatch({type: 'FETCH_USER', users: data.data });
       }
     
 
